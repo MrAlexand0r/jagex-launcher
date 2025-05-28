@@ -18,7 +18,7 @@ void main() {
 const borderColor = Color(0xFF805306);
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
