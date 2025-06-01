@@ -15,7 +15,9 @@ class News extends StatelessWidget {
       child: Expanded(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Column(children: [NewsBanner(), NewsGrid()]),
+          child: Column(
+            children: [NewsBanner(), NewsGrid()],
+          ),
         ),
       ),
     );

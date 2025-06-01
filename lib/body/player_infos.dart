@@ -10,7 +10,7 @@ class PlayerInfos extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            width: 250,
+            width: 300,
             child: Image.network(
               'https://oldschool.runescape.wiki/images/thumb/Old_School_RuneScape_logo.png/640px-Old_School_RuneScape_logo.png',
             ),
