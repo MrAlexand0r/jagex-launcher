@@ -151,7 +151,7 @@ packages:
     source: hosted
     version: "5.1.1"
   built_value:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: built_value
       sha256: "082001b5c3dc495d4a42f1d5789990505df20d8547d42507c29050af6933ee27"
@@ -368,6 +368,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  jagexLauncherAPI:
+    dependency: "direct main"
+    description:
+      path: api
+      relative: true
+    source: path
+    version: "1.0.0"
   js:
     dependency: transitive
     description:
@@ -488,13 +495,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
-  openapi:
-    dependency: "direct main"
-    description:
-      path: api
-      relative: true
-    source: path
-    version: "1.0.0"
   openapi_generator:
     dependency: "direct dev"
     description:

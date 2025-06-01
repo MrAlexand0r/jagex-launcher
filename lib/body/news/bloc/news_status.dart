@@ -1,15 +1,31 @@
-import 'package:openapi/openapi.dart';
+
+import 'package:jagexLauncherAPI/jagexLauncherAPI.dart';
 
 class NewsState {
   final OsrsStatus? osrsStatus;
-  final String? error;
+  final String? osrsStatusError;
 
-  NewsState({this.osrsStatus, this.error});
+  final LatestNews? latestNews;
+  final String? latestNewsError;
 
-  NewsState copyWith({OsrsStatus? osrsStatus, String? error}) {
+  NewsState({
+    this.osrsStatus,
+    this.osrsStatusError,
+    this.latestNews,
+    this.latestNewsError,
+  });
+
+  NewsState copyWith({
+    OsrsStatus? osrsStatus,
+    String? osrsStatusError,
+    LatestNews? latestNews,
+    String? latestNewsError,
+  }) {
     return NewsState(
       osrsStatus: osrsStatus ?? this.osrsStatus,
-      error: error ?? this.error,
+      osrsStatusError: osrsStatusError ?? this.osrsStatusError,
+      latestNews: latestNews ?? this.latestNews,
+      latestNewsError: latestNewsError ?? this.latestNewsError,
     );
   }
 

@@ -37,10 +37,11 @@ dependencies:
   bitsdojo_window: ^0.1.6
   openapi_generator_annotations: ^6.1.0
   dio: ^5.8.0+1
-  openapi:
+  jagexLauncherAPI:
     path: ./api
   bloc: ^9.0.0
   flutter_bloc: ^9.1.1
+  built_value: ^8.10.1
 
 dev_dependencies:
   flutter_test:
