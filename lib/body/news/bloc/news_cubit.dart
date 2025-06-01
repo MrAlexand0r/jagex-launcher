@@ -5,7 +5,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jagexLauncherAPI/jagexLauncherAPI.dart';
 import 'package:launcher/config/backend_urls.dart';
-import 'package:launcher/config/plain_text_to_json_plugin.dart' show PlainJsonTransformer;
+import 'package:launcher/config/plain_text_to_json_plugin.dart'
+    show PlainJsonTransformer;
 
 import 'news_status.dart';
 
@@ -24,17 +25,31 @@ class NewsCubit extends Cubit<NewsState> {
   }
 
   final statusApi =
-      JagexLauncherAPI(basePathOverride: BackendUrls.Publishing).getPublishingApi();
+      JagexLauncherAPI(
+        basePathOverride: BackendUrls.publishing,
+      ).getPublishingApi();
 
   final newsApi =
-  JagexLauncherAPI(basePathOverride: BackendUrls.Runescape, serializers: (serializers.toBuilder()..addPlugin(PlainJsonTransformer())..addPlugin(StandardJsonPlugin())).build()).getRunescapeApi();
+      JagexLauncherAPI(
+        basePathOverride: BackendUrls.runescape,
+        serializers:
+            (serializers.toBuilder()
+            // Plain JSON Transformer is required because news.json's mime type is text/plain
+            // while it should be application/json
+            // remove once http headers are corrected
+                  ..addPlugin(PlainJsonTransformer())
+                  ..addPlugin(StandardJsonPlugin()))
+                .build(),
+      ).getRunescapeApi();
 
   Future<void> loadStatus() async {
     Response<OsrsStatus> status;
     try {
       status = await statusApi.getOsrsStatus();
     } catch (e) {
-      return emit(state.copyWith(osrsStatusError: "Publishing Server not reachable"));
+      return emit(
+        state.copyWith(osrsStatusError: "Publishing Server not reachable"),
+      );
     }
     if (status.data != null) {
       print(status.data);
@@ -47,7 +62,9 @@ class NewsCubit extends Cubit<NewsState> {
     try {
       news = await newsApi.getLatestNews();
     } catch (e) {
-      return emit(state.copyWith(latestNewsError: "Runescape News failed to load"));
+      return emit(
+        state.copyWith(latestNewsError: "Runescape News failed to load"),
+      );
     }
     if (news.data != null) {
       print(news.data);

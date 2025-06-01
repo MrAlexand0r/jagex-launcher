@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:jagexLauncherAPI/src/model/news_item.dart';
+import 'package:jagexLauncherAPI/jagexLauncherAPI.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewsCard extends StatelessWidget {

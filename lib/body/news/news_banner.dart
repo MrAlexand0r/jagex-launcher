@@ -25,7 +25,7 @@ class NewsBanner extends StatelessWidget {
   Image getImage(NewsState state) {
     if(state.osrsStatus?.loadRemoteBanner == true && state.osrsStatus?.remoteBannerLinkUrl != null) {
       return Image.network(
-        '${BackendUrls.Publishing}/osrs/${state.osrsStatus!.remoteBannerLinkUrl!}',
+        '${BackendUrls.publishing}/osrs/${state.osrsStatus!.remoteBannerLinkUrl!}',
         fit: BoxFit.fill,
       );
     } else {

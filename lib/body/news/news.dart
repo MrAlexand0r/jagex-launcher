@@ -6,7 +6,7 @@ import 'package:launcher/body/news/news_banner.dart';
 import 'news_grid.dart';
 
 class News extends StatelessWidget {
-  News({super.key});
+  const News({super.key});
 
   @override
   Widget build(BuildContext context) {
