@@ -34,6 +34,7 @@ class NewsGrid extends StatelessWidget {
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
                   crossAxisCount: 3,
+                  physics: NeverScrollableScrollPhysics(),
                   children: state.latestNews!
                       .newsItems!
                       .map((item) => NewsCard(newsItem: item),)

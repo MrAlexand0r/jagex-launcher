@@ -1,0 +1,8 @@
+Membership Status:
+https://auth.runescape.com/game-session/v1/accounts?fetchMembership=true
+
+Sessions:
+https://auth.runescape.com/game-session/v1/sessions
+
+
+https://secure.jagex.com/rs-profile/v1/profile
