@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:launcher/body/news.dart';
+import 'package:launcher/body/news/news.dart';
 import 'package:launcher/body/player_infos.dart';
 import 'package:launcher/header/header.dart';
 
@@ -18,7 +18,7 @@ class LauncherContainer extends StatelessWidget {
               scrollDirection: Axis.vertical,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [News(), PlayerInfos()]
+                  children: [News(), PlayerInfos()]
               ),
             ),
           ),
