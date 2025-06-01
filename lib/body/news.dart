@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:launcher/body/news_grid.dart';
 
 class News extends StatelessWidget {
   const News({super.key});
@@ -20,6 +21,7 @@ class News extends StatelessWidget {
                 ),
               ),
             ),
+            NewsGrid(),
           ],
         ),
       ),

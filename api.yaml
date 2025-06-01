@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: OSRS Launcher API
+  version: 1.0.0
+servers:
+  - url: https://files.publishing.production.jxp.jagex.com
+    description: Jagex Publishing Server
+  - url: https://secure.runescape.com
+    description: RuneScape Server
+  - url: https://auth.runescape.com
+    description: Authenticated Endpoint
+
+#TODO
+#Membership Status:
+#https://auth.runescape.com/game-session/v1/accounts?fetchMembership=true
+#
+#Sessions:
+#https://auth.runescape.com/game-session/v1/sessions
+#
+#
+#https://secure.jagex.com/rs-profile/v1/profile
+
+paths:
+  /osrs/osrs.json:
+    get:
+      tags:
+        - Publishing
+      servers:
+        - url: https://files.publishing.production.jxp.jagex.com
+      summary: Get OSRS status flags
+      operationId: getOsrsStatus
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OsrsStatus'
+  /m=news/latestNews.json:
+    get:
+      tags:
+        - Runescape
+      summary: Get latest OSRS news
+      operationId: getLatestNews
+      servers:
+        - url: https://secure.runescape.com
+      parameters:
+        - name: maxItems
+          in: query
+          schema:
+            type: integer
+            default: 6
+          description: Maximum news items to return
+        - name: oldschool
+          in: query
+          schema:
+            type: boolean
+            default: true
+          description: Filter for Old School content
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LatestNews'
+
+components:
+  securitySchemes:
+    com_jagex_auth_desktop_launcher:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://account.jagex.com/oauth2/auth
+          tokenUrl: https://account.jagex.com/oauth2/token
+          scopes:
+            openid: openId
+            offline: Offline
+            gamesso.token.create: Create SSO Token
+            user.profile.read: Read User Profile
+
+  schemas:
+    OsrsStatus:
+      type: object
+      properties:
+        psaEnabled:
+          type: boolean
+        psaMessage:
+          type: string
+        playDisabled:
+          type: boolean
+        loadRemoteBanner:
+          type: boolean
+        loadRemoteLogo:
+          type: boolean
+        remoteBannerFileName:
+          type: string
+        remoteBannerLinkUrl:
+          type: string
+        remoteLogoFileName:
+          type: string
+
+    LatestNews:
+      type: object
+      properties:
+        categoryId:
+          type: integer
+        newsItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/NewsItem'
+
+    NewsItem:
+      type: object
+      properties:
+        newsId:
+          type: integer
+        time:
+          type: string
+          format: epoch-millis
+        formattedDate:
+          type: string
+        title:
+          type: string
+        summary:
+          type: string
+        categoryId:
+          type: integer
+        summaryImageLink:
+          type: string
+          format: uri
+        link:
+          type: string
+          format: uri
+        largeMediaType:
+          type: integer
+        sticky:
+          type: boolean
